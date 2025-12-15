@@ -9,27 +9,96 @@
   <link rel="stylesheet" href="styles.css">
 
   <style>
+    /* Match ABOUT cards to the premium FEATURE card style */
     .about-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.75));
+      background: linear-gradient(180deg, #ffffff, #fbfdff);
       border-radius: var(--radius);
       padding: 1.6rem;
-      box-shadow: 0 8px 28px rgba(11,15,30,0.06);
-      border: 1px solid rgba(17,24,39,0.03);
-      transition: transform 350ms, box-shadow 350ms;
-    }
-    .card:hover{
-      transform: translateY(-8px) rotateX(1.2deg);
-      box-shadow: 0 18px 40px rgba(11,15,30,0.12);
+      box-shadow: 0 6px 20px rgba(2, 6, 23, 0.06);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
     }
 
-    .card h3 { margin: 0 0 0.6rem; font-size: 1.05rem; color:#0b1220; }
-    .card p { color: var(--muted); }
+    .about-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
+      background: linear-gradient(180deg, #ffffff, #eef2ff);
+    }
 
-    .why-grid { margin-top:1.8rem; display:grid; gap:1.2rem; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); }
-    .why-card { padding:1.5rem; border-radius:12px; background: linear-gradient(180deg, rgba(107,140,255,0.06), rgba(139,227,199,0.03)); border:1px solid rgba(107,140,255,0.06); }
+    /* soft shine sweep like features page */
+    .about-card::after {
+      content: "";
+      position: absolute;
+      top: -120%;
+      left: -40%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.45) 50%,
+        transparent 100%
+      );
+      opacity: 0;
+      transform: rotate(25deg);
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .about-card:hover::after {
+      opacity: 1;
+      animation: shineMove 0.9s forwards;
+    }
+
+    /* subtle float loop (same feel as feature cards) */
+    .about-card {
+      animation: floatCard 7s ease-in-out infinite;
+    }
+
+    .about-card h3 { margin: 0 0 0.6rem; font-size: 1.05rem; color:#0b1220; }
+    .about-card p { color: var(--muted); }
+
+    /* Center ABOUT grids: 3 on first row, 1 centered on second row (like Features page) */
+    .about-grid {
+      margin-top: 2.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.6rem;
+      justify-content: center;
+    }
+
+    .about-grid .about-card {
+      flex: 0 1 260px;
+      max-width: 320px;
+    }
+
+    /* Center the stats cards nicely */
+    .why-grid {
+      margin-top:1.8rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:1.2rem;
+      justify-content:center;
+    }
+    .why-card {
+      padding:1.5rem;
+      border-radius:12px;
+      background: linear-gradient(180deg, rgba(107,140,255,0.06), rgba(139,227,199,0.03));
+      border:1px solid rgba(107,140,255,0.06);
+      min-width: 220px;
+    }
     .counter { font-weight:700; font-size:1.6rem; color: var(--accent-1); }
 
-
+    /* Slightly tighter, centered content for About page */
+    main.container {
+      max-width: 980px;
+    }
   </style>
 </head>
 
@@ -77,12 +146,27 @@
       <p>WorkzUp was built to solve a common problem: short-term job opportunities are scattered, time-consuming to find, and often unreliable.</p>
     </section>
 
-    <!-- ★★★ NEW PHOTO COLLAGE SECTION ★★★ -->
+    <!-- ★★★ ABOUT US PHOTO COLLAGE ★★★
+         Replace the image sources below with your actual About page photos.
+         Tip: mix team, workspace and product photos to create a real collage.
+         Just change ONLY the value inside src="...".
+    -->
     <section class="about-section" style="--delay:0.1s;">
       <div class="photo-collage">
-        <div class="photo-box"><img src="Images/sample-1.jpg" alt=""></div>
-        <div class="photo-box"><img src="Images/sample-2.jpg" alt=""></div>
-        <div class="photo-box"><img src="Images/sample-3.jpg" alt=""></div>
+        <!-- Replace with your first About image (tall portrait) -->
+        <div class="photo-box"><img src="Images/sample-1.jpg" alt="About us image 1"></div>
+        <!-- Replace with your second About image (wide group) -->
+        <div class="photo-box"><img src="Images/sample-2.jpg" alt="About us image 2"></div>
+        <!-- Replace with your third About image (main center focus) -->
+        <div class="photo-box"><img src="Images/sample-3.jpg" alt="About us image 3"></div>
+        <!-- Replace with your fourth About image -->
+        <div class="photo-box"><img src="Images/sample-4.jpg" alt="About us image 4"></div>
+        <!-- Replace with your fifth About image -->
+        <div class="photo-box"><img src="Images/sample-5.jpg" alt="About us image 5"></div>
+        <!-- Optional: replace with your sixth About image -->
+        <div class="photo-box"><img src="Images/sample-6.jpg" alt="About us image 6"></div>
+        <!-- Optional: replace with your seventh About image -->
+        <div class="photo-box"><img src="Images/sample-7.jpg" alt="About us image 7"></div>
       </div>
     </section>
 
@@ -94,20 +178,20 @@
     <section class="about-section" style="--delay:0.18s;">
       <h2>Core Values</h2>
       <div class="about-grid">
-        <div class="card"><h3>Transparency</h3><p>Clear, honest communication among all users.</p></div>
-        <div class="card"><h3>Security</h3><p>Security-first design to protect users and payments.</p></div>
-        <div class="card"><h3>Equal Opportunity</h3><p>Fair access regardless of background.</p></div>
-        <div class="card"><h3>Innovation</h3><p>Applying AI responsibly to make hiring better.</p></div>
+        <div class="about-card"><h3>Transparency</h3><p>Clear, honest communication among all users.</p></div>
+        <div class="about-card"><h3>Security</h3><p>Security-first design to protect users and payments.</p></div>
+        <div class="about-card"><h3>Equal Opportunity</h3><p>Fair access regardless of background.</p></div>
+        <div class="about-card"><h3>Innovation</h3><p>Applying AI responsibly to make hiring better.</p></div>
       </div>
     </section>
 
     <section class="about-section" style="--delay:0.24s;">
       <h2>What We Offer</h2>
       <div class="about-grid">
-        <div class="card"><h3>AI Job Matching</h3><p>Smart matches based on skills and availability.</p></div>
-        <div class="card"><h3>Verified Users</h3><p>Building trust with verification and ratings.</p></div>
-        <div class="card"><h3>Secure Messaging</h3><p>Keep conversations safe and private.</p></div>
-        <div class="card"><h3>Job Tracking</h3><p>Stay updated throughout the workflow.</p></div>
+        <div class="about-card"><h3>AI Job Matching</h3><p>Smart matches based on skills and availability.</p></div>
+        <div class="about-card"><h3>Verified Users</h3><p>Building trust with verification and ratings.</p></div>
+        <div class="about-card"><h3>Secure Messaging</h3><p>Keep conversations safe and private.</p></div>
+        <div class="about-card"><h3>Job Tracking</h3><p>Stay updated throughout the workflow.</p></div>
       </div>
     </section>
 
