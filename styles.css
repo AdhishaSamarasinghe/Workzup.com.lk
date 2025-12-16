@@ -2180,6 +2180,17 @@ main#main .card {
     background: var(--card);
   }
 
+  /* Team social icons: clip PNG edges on mobile */
+  .team-social .social-link {
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .team-social .social-link img {
+    border-radius: 999px;
+    object-fit: cover;
+  }
+
   .map-embed iframe {
     height: clamp(220px, 52vw, 280px);
   }
