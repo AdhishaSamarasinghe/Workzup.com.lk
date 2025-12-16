@@ -18,14 +18,14 @@ function typeEffect() {
     if (isDeleting) {
         charIndex--;
         speed = deletingSpeed;
-        animatedTextElement.textContent = currentWord.substring(0, charIndex);
+    animatedTextElement.textContent = currentWord.substring(0, charIndex);
         if (charIndex === 0) {
             isDeleting = false;
             wordIndex++; 
         }
     } else {
         charIndex++;
-        animatedTextElement.textContent = currentWord.substring(0, charIndex);
+    animatedTextElement.textContent = currentWord.substring(0, charIndex);
         if (charIndex === currentWord.length) { 
             speed = delayBeforeDelete; 
             isDeleting = true;
@@ -34,25 +34,30 @@ function typeEffect() {
     setTimeout(typeEffect, speed);
 }
 document.addEventListener('DOMContentLoaded', () => {
-    typeEffect();
+  if (animatedTextElement) typeEffect();
 });
 
 
 // Mobile nav toggle
 const navToggle = document.querySelector('.nav-toggle');
 const siteNav = document.querySelector('.site-nav');
-navToggle.addEventListener('click', ()=>{
-  const open = siteNav.classList.toggle('open');
-  navToggle.setAttribute('aria-expanded', String(open));
-});
 
-// Close mobile nav on link click
-document.querySelectorAll('.site-nav a').forEach(a=>a.addEventListener('click', ()=>{
-  if(siteNav.classList.contains('open')){
-    siteNav.classList.remove('open');
-    navToggle.setAttribute('aria-expanded','false');
-  }
-}));
+if (navToggle && siteNav) {
+  navToggle.addEventListener('click', () => {
+    const open = siteNav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(open));
+  });
+
+  // Close mobile nav on link click
+  document.querySelectorAll('.site-nav a').forEach((a) =>
+    a.addEventListener('click', () => {
+      if (siteNav.classList.contains('open')) {
+        siteNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    })
+  );
+}
 
 // Scroll reveal using IntersectionObserver
 const observer = new IntersectionObserver((entries)=>{
@@ -284,16 +289,9 @@ if(waitlistForm){
 /* If you already have script.js, append this to the bottom. */
 
 document.addEventListener('DOMContentLoaded', function () {
-  /* --------- NAV TOGGLE (minimal) --------- */
-  const navToggle = document.querySelector('.nav-toggle');
-  const siteNav = document.querySelector('.site-nav');
-  if (navToggle && siteNav) {
-    navToggle.addEventListener('click', () => {
-      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-      navToggle.setAttribute('aria-expanded', String(!expanded));
-      siteNav.classList.toggle('open');
-    });
-  }
+  /* --------- NAV TOGGLE ---------
+     NOTE: handled once at top of file to avoid double-toggle bugs.
+  --------- */
 
   /* --------- PARALLAX FOR BLOBS (mousemove + scroll) --------- */
   const blobs = Array.from(document.querySelectorAll('.blob'));

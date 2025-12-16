@@ -172,8 +172,37 @@ main {
 
 .nav-toggle {
   display: none;
-  background: none;
-  border: 0;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  border-radius: 14px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(2, 6, 23, 0.08);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+.nav-toggle:hover {
+  transform: translateY(-1px);
+  border-color: rgba(107, 140, 255, 0.28);
+  box-shadow: 0 14px 34px rgba(2, 6, 23, 0.10);
+}
+
+.nav-toggle:active {
+  transform: translateY(0);
+  box-shadow: 0 10px 26px rgba(2, 6, 23, 0.08);
+}
+
+.nav-toggle:focus-visible {
+  outline: none;
+  box-shadow:
+    0 10px 26px rgba(2, 6, 23, 0.10),
+    0 0 0 4px rgba(107, 140, 255, 0.22);
 }
 
 .hamburger {
@@ -181,6 +210,8 @@ main {
   height: 2px;
   background: var(--muted);
   position: relative;
+  border-radius: 999px;
+  transition: background 0.18s ease, transform 0.18s ease;
 }
 .hamburger::before,
 .hamburger::after {
@@ -190,12 +221,27 @@ main {
   right: 0;
   height: 2px;
   background: var(--muted);
+  border-radius: 999px;
+  transition: transform 0.18s ease, top 0.18s ease, bottom 0.18s ease, opacity 0.18s ease;
 }
 .hamburger::before {
   top: -7px;
 }
 .hamburger::after {
   bottom: -7px;
+}
+
+/* Animate hamburger into an “X” when menu is open */
+.nav-toggle[aria-expanded="true"] .hamburger {
+  background: transparent;
+}
+.nav-toggle[aria-expanded="true"] .hamburger::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] .hamburger::after {
+  bottom: 0;
+  transform: rotate(-45deg);
 }
 
 /* ------------------------------------------------------------
@@ -1317,7 +1363,7 @@ main#main .card {
   }
 
   .nav-toggle {
-    display: block;
+    display: inline-flex;
   }
 
   .team-grid {
@@ -1840,3 +1886,383 @@ main#main .card {
           <div class="blob b2"></div>
           
         */
+
+
+/* ============================================================
+   MOBILE & TABLET RESPONSIVE OVERRIDES (<= 768px)
+   Goal: fix mobile layout/performance without altering desktop.
+   Strategy: ONLY overrides + media queries; use !important sparingly.
+============================================================ */
+
+@media (max-width: 768px) {
+  /* ------------------------------------------------------------
+     0) Global: prevent horizontal scroll + media sizing
+  ------------------------------------------------------------ */
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  img,
+  video,
+  iframe {
+    max-width: 100%;
+  }
+
+  .container {
+    padding: clamp(1rem, 3.2vw, 1.5rem) !important;
+  }
+
+  /* Typography baseline (readable + consistent) */
+  body {
+    font-size: 15px;
+  }
+
+  .section-title {
+    font-size: clamp(1.35rem, 4.2vw, 2rem) !important;
+  }
+
+  .section-title-reveal {
+    font-size: clamp(1.5rem, 4.8vw, 2rem);
+    margin-bottom: 1.75rem;
+  }
+
+  /* Remove negative section offsets that pull content under the header */
+  .section-team,
+  .section-features,
+  .section-terms,
+  .section-contact {
+    margin-top: 0 !important;
+  }
+
+  /* ------------------------------------------------------------
+     1) Navbar: make menu usable on phones + tablets
+        - Extend "mobile nav" behavior up to 768px
+        - Larger tap targets
+        - Scrollable menu panel (no overflow)
+  ------------------------------------------------------------ */
+  .site-header {
+    backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+  }
+
+  .header-inner {
+    gap: 0.75rem;
+  }
+
+  .nav-toggle {
+    display: inline-flex !important;
+  }
+
+  .site-nav {
+    display: none;
+    position: fixed;
+    inset: 68px 12px auto 12px;
+    background: var(--card);
+    z-index: 999;
+    padding: 0.5rem 0.75rem;
+    border-radius: 14px;
+    box-shadow: 0 24px 60px rgba(2, 6, 23, 0.12);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    max-height: calc(100svh - 84px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .site-nav.open {
+    display: block;
+  }
+
+  .site-nav ul {
+    flex-direction: column !important;
+    gap: 0 !important;
+  }
+
+  .site-nav li + li {
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+  }
+
+  .site-nav a {
+    display: block;
+    padding: 0.9rem 0.85rem;
+  }
+
+  /* ------------------------------------------------------------
+     2) Hero: clamp typography + responsive input group
+        - Fix oversized hero text
+        - Prevent input from overflowing
+        - Use svh to avoid mobile browser UI "vh" jumps
+  ------------------------------------------------------------ */
+  .hero-video-bg {
+    height: 100svh;
+    min-height: 100svh;
+    padding: clamp(4.5rem, 10svh, 6rem) 0 3rem;
+  }
+
+  .bg-video {
+    transition: none !important;
+    will-change: auto !important;
+  }
+
+  /* Disable scroll parallax transforms on mobile for performance */
+  .hero-video-bg.parallax-scroll .bg-video {
+    transform: translate(-50%, -50%) !important;
+  }
+
+  .hero-content {
+    width: 100% !important;
+    max-width: 40rem;
+    padding: 0 0.5rem;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2.2rem, 6.2vw, 3.2rem) !important;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+  }
+
+  .hero-content .typing-text {
+    font-size: clamp(2rem, 5.6vw, 3rem) !important;
+  }
+
+  .hero-content p.lead {
+    font-size: clamp(0.98rem, 2.6vw, 1.1rem) !important;
+    margin: 12px auto 24px !important;
+    max-width: 40rem;
+    padding: 0 0.25rem;
+  }
+
+  .hero-content .input-group {
+    width: 100% !important;
+    max-width: 34rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    overflow: hidden;
+    backdrop-filter: none !important;
+  }
+
+  .hero-content .input-group input {
+    width: 100%;
+    font-size: 1rem !important;
+    padding: 0.95rem 1rem !important;
+  }
+
+  .hero-content .input-group button {
+    width: 100%;
+    padding: 0.9rem 1rem !important;
+  }
+
+  /* Generic input group: remove hard max-width on small screens */
+  .input-group {
+    width: 100% !important;
+    max-width: 34rem !important;
+  }
+
+  #waitlistStatus {
+    margin-left: 0 !important;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* ------------------------------------------------------------
+     3) Convert layouts to single-column on <=768px
+        - Applies to both phones and tablets as requested
+  ------------------------------------------------------------ */
+  .split,
+  .contact-grid,
+  .stats-grid,
+  .team-grid,
+  .features-grid,
+  .steps-grid,
+  .routine-grid,
+  .main-features-grid,
+  .barriers-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Some pages switch these grids to flex; force single-column there too */
+  .section-features .features-grid,
+  .section.routine .routine-grid,
+  .section.barriers .barriers-grid,
+  .screens-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch;
+  }
+
+  .section-features .feature-card,
+  .section.routine .routine-card,
+  .section.barriers .barrier-card {
+    flex: 1 1 auto !important;
+  }
+
+  /* Prevent the 4th feature-card centering rule from creating layout gaps */
+  .features-grid .feature-card:nth-child(4) {
+    grid-column: auto !important;
+  }
+
+  .steps-grid {
+    max-width: none !important;
+    width: 100%;
+  }
+
+  .widgets-grid-wrapper1 {
+    padding: clamp(2.25rem, 7vw, 3.25rem) 0 clamp(1.5rem, 5vw, 2.5rem);
+  }
+
+  .how-layout {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 24px;
+  }
+
+  /* CTA: stack buttons */
+  .cta-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cta-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* ------------------------------------------------------------
+     4) Remove fixed widths/heights that cause overflow
+  ------------------------------------------------------------ */
+  .latest-jobs-card {
+    width: 100% !important;
+    max-width: 34rem;
+    margin-left: auto;
+    margin-right: auto;
+    animation: none !important;
+  }
+
+  .job-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    animation: none !important;
+  }
+
+  .job-meta {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
+
+  .price {
+    margin-bottom: 0;
+  }
+
+  .jobs-footer {
+    flex-direction: column;
+  }
+
+  .screenshot {
+    width: min(92vw, 340px);
+  }
+
+  .team-card img {
+    height: clamp(260px, 70vw, 380px);
+    object-fit: contain;
+    background: var(--card);
+  }
+
+  .map-embed iframe {
+    height: clamp(220px, 52vw, 280px);
+  }
+
+  /* ------------------------------------------------------------
+     5) Footer: stack cleanly (no wrap overflow)
+  ------------------------------------------------------------ */
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .footer-inner nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .footer-inner nav a {
+    margin-left: 0 !important;
+  }
+
+  .social {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  /* ------------------------------------------------------------
+     6) Performance: disable heavy effects on mobile
+        - Keep desktop effects untouched
+  ------------------------------------------------------------ */
+  .blob {
+    display: none !important;
+  }
+
+  .reveal,
+  [data-reveal],
+  .latest-jobs-card[data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  .waitlist-arrow {
+    animation: none !important;
+  }
+
+  /* Disable continuous floating animations on mobile */
+  .feature-card,
+  .routine-card,
+  .main-feature-card,
+  .barrier-card {
+    animation: none !important;
+  }
+
+  /* Disable shine animation (hover isn't meaningful on touch) */
+  .feature-card::after,
+  .routine-card::after,
+  .main-feature-card::after,
+  .barrier-card::after {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   Phone-specific finishing touches (<= 480px)
+------------------------------------------------------------ */
+@media (max-width: 480px) {
+  .logo {
+    width: 84px;
+  }
+
+  .footer-inner {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-inner nav,
+  .social {
+    justify-content: center;
+  }
+}
