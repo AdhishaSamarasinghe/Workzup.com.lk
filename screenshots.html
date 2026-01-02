@@ -8,8 +8,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <header class="site-header">
+<body class="ui-video-page">
+  <header class="site-header transparent">
     <div class="container header-inner">
       <a href="home.html">
           <img src="Logo\logo.png" alt="Workzup" class="logo">
@@ -32,25 +32,80 @@
   </header>
 
   <main>
-    <div class="blob b1"></div>
-    <div class="blob b2"></div>
-    <section class="section screenshots">
+    <section class="hero-video-bg ui-video-bg">
+      <video class="bg-video ui-bg-video" autoplay muted loop playsinline preload="metadata">
+        <source src="Video/UI.mp4" type="video/mp4">
+      </video>
+      <div class="video-overlay"></div>
+
+      <div class="hero-content">
+        <h1>User Interface</h1>
+        <p class="lead">A quick look at the Workzup app experience  key screens and main flows.</p>
+      </div>
+
+      <button class="video-sound-toggle" type="button" aria-label="Unmute video" aria-pressed="false" data-muted="true">
+        <svg class="icon-muted" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M11 5L6.5 8.5H3V15.5H6.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M16 9L21 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M21 9L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <svg class="icon-unmuted" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M11 5L6.5 8.5H3V15.5H6.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M15.5 8.5C16.6 9.6 17.2 11 17.2 12.5C17.2 14 16.6 15.4 15.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M18 6C19.7 7.7 20.7 10 20.7 12.5C20.7 15 19.7 17.3 18 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </section>
+
+    <section class="section ui-cards-section">
       <div class="container">
-        <h2 class="section-title reveal">Screenshots</h2>
-        <p class="lead reveal">Preview of the app UI — placeholders for now. Click to open the larger image.</p>
-        <div class="screens-grid">
-          <a class="screenshot-link reveal" href="https://via.placeholder.com/600x1200.png?text=App+Screen+1" target="_blank" rel="noopener">
-            <img class="screenshot" src="https://via.placeholder.com/300x600.png?text=App+Screen+1" alt="Screenshot 1">
-          </a>
-          <a class="screenshot-link reveal" href="https://via.placeholder.com/600x1200.png?text=App+Screen+2" target="_blank" rel="noopener">
-            <img class="screenshot" src="https://via.placeholder.com/300x600.png?text=App+Screen+2" alt="Screenshot 2">
-          </a>
-          <a class="screenshot-link reveal" href="https://via.placeholder.com/600x1200.png?text=App+Screen+3" target="_blank" rel="noopener">
-            <img class="screenshot" src="https://via.placeholder.com/300x600.png?text=App+Screen+3" alt="Screenshot 3">
-          </a>
+        <h2 class="section-title reveal">UI Screens</h2>
+        <p class="section-sub muted reveal">A closer look at key screens  explained one by one.</p>
+
+        <div class="ui-list">
+          <div class="ui-item reveal">
+            <img class="ui-item-img" src="UI\3 (1).png" alt="Login and sign up screen">
+            <div class="ui-item-body">
+              <h3>Login & Sign up</h3>
+              <p class="muted">Quick onboarding with a simple flow to create an account and get started.</p>
+            </div>
+          </div>
+
+          <div class="ui-item reveal">
+            <img class="ui-item-img" src="UI\3 (1).png" alt="Browse jobs screen">
+            <div class="ui-item-body">
+              <h3>Browse jobs</h3>
+              <p class="muted">Find available short-term jobs with clear listings and essential details.</p>
+            </div>
+          </div>
+
+          <div class="ui-item reveal">
+            <img class="ui-item-img" src="UI\3 (1).png" alt="Job details screen">
+            <div class="ui-item-body">
+              <h3>Job details</h3>
+              <p class="muted">View job requirements, location, time, and payment before applying.</p>
+            </div>
+          </div>
+
+          <div class="ui-item reveal">
+            <img class="ui-item-img" src="UI\3 (1).png" alt="Apply and confirm screen">
+            <div class="ui-item-body">
+              <h3>Apply & confirm</h3>
+              <p class="muted">One-tap apply with an easy confirmation flow to secure the shift.</p>
+            </div>
+          </div>
+
+          <div class="ui-item reveal">
+            <img class="ui-item-img" src="UI\3 (1).png" alt="Profile and ratings screen">
+            <div class="ui-item-body">
+              <h3>Profile & ratings</h3>
+              <p class="muted">Manage your profile and build trust with ratings after completed work.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
+    
   </main>
 
   <footer class="site-footer">
