@@ -387,6 +387,7 @@ main {
     max-width: 600px;
     height: 68px;
     border-radius: 50px;
+    flex-wrap: nowrap;
     overflow: hidden;
     background: rgba(255,255,255,0.95);
     backdrop-filter: blur(8px);
@@ -410,6 +411,8 @@ main {
     width: 28px !important;
     height: 28px !important;
     stroke: white !important;
+    display: block;
+    margin: 0;
 }
 
 
@@ -469,7 +472,7 @@ main {
 .input-group {
     margin-top:40px ;
     display: flex;
-    max-width: 400px; 
+    max-width: 600px; 
     margin-bottom: 0.5rem;
     border: 1px solid rgba(15,23,42,0.1);
     border-radius: 50px;
@@ -2263,11 +2266,40 @@ main#main .card {
     max-width: 34rem;
     height: auto;
     display: flex;
-    flex-direction: column;
     border-radius: 16px;
     overflow: hidden;
     backdrop-filter: none !important;
   }
+
+
+.hero-content .input-group {
+  height: 56px;                
+  border-radius: 50px;          
+}
+
+.hero-content .input-group input {
+  font-size: 0.95rem !important;
+  padding: 0 16px !important;
+  line-height: 1;
+}
+
+.hero-content .input-group button {
+  width: 56px;
+  height: 56px;
+  padding: 0 !important;
+
+  display: flex;                
+  align-items: center;
+  justify-content: center;
+}
+.hero-content .input-group button svg {
+  width: 22px !important;
+  height: 22px !important;
+  display: block;
+  margin: 0;
+}
+
+
 
   .hero-content .input-group input {
     width: 100%;
@@ -2275,10 +2307,33 @@ main#main .card {
     padding: 0.95rem 1rem !important;
   }
 
-  .hero-content .input-group button {
-    width: 100%;
-    padding: 0.9rem 1rem !important;
-  }
+  
+
+.hero-content .input-group {
+  flex-direction: row !important;
+  align-items: center;
+  height: 68px;                 /* same as desktop */
+  border-radius: 50px;          /* keep pill shape */
+}
+
+.hero-content .input-group input {
+  flex: 1;
+  min-width: 0;                 /* VERY IMPORTANT for mobile */
+}
+
+.hero-content .input-group button {
+  flex-shrink: 0;
+  width: 68px;                  /* arrow stays circular */
+  height: 68px;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
 
   /* Generic input group: remove hard max-width on small screens */
   .input-group {
