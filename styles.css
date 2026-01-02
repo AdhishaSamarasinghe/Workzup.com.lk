@@ -408,8 +408,8 @@ main {
 }
 
 .hero-content .input-group button svg {
-    width: 28px !important;
-    height: 28px !important;
+    width: 20px !important;
+    height: 20px !important;
     stroke: white !important;
     display: block;
     margin: 0;
@@ -2312,19 +2312,23 @@ main#main .card {
 .hero-content .input-group {
   flex-direction: row !important;
   align-items: center;
-  height: 68px;                 /* same as desktop */
-  border-radius: 50px;          /* keep pill shape */
+  height: 50px;                 /* same as desktop */
+  border-radius: 40px;          /* keep pill shape */
+  max-width: 320px; 
 }
 
 .hero-content .input-group input {
   flex: 1;
   min-width: 0;                 /* VERY IMPORTANT for mobile */
+  font-size: 0.9rem !important;
+  padding: 0 14px !important;
+  line-height: 1;
 }
 
 .hero-content .input-group button {
   flex-shrink: 0;
-  width: 68px;                  /* arrow stays circular */
-  height: 68px;
+  width: 50px;                  /* arrow stays circular */
+  height: 50px;
   padding: 0 !important;
   display: flex;
   align-items: center;
