@@ -661,13 +661,18 @@ main {
 .feature-icon {
   width: 50px;         
   height: 50px;
-  margin-bottom: 12px;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+
 }
 .feature-icon img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   display: block;
+  margin: auto;
 }
 
 @media (max-width:980px){
@@ -699,12 +704,12 @@ main {
   border-radius: 12px;
   border: 1px solid rgba(15, 23, 36, 0.03);
   box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
-  text-align: left;
+  text-align:center;
   aspect-ratio: 1 / 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
@@ -728,7 +733,7 @@ main {
   justify-content: center;
   color: white;
   font-weight: 800;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   box-shadow: 0 6px 16px rgba(107, 139, 255, 0.35);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -1886,7 +1891,18 @@ main#main .card {
           <div class="blob b2"></div>
           
         */
+.feature-card,
+.routine-card,
+.main-feature-card,
+.barrier-card {
+  text-align: center;
+}
 
+.feature-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* ============================================================
    MOBILE & TABLET RESPONSIVE OVERRIDES (<= 768px)
