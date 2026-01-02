@@ -403,31 +403,26 @@ const io = new IntersectionObserver((entries) => {
 revealItems.forEach(el => io.observe(el));
 
 document.addEventListener("DOMContentLoaded", () => {
-    const header = document.querySelector(".site-header");
-    const isHomePage = document.body.classList.contains("home-page");
+  const header = document.querySelector(".site-header");
+  const supportsTransparentNav =
+    document.body.classList.contains("home-page") ||
+    document.body.classList.contains("ui-video-page");
 
-    if (!isHomePage || !header) return;
+  if (!supportsTransparentNav || !header) return;
 
-    // Make navbar transparent at start
-    header.classList.add("transparent");
+  // Match Home behavior: transparent at top, solid after you scroll.
+  function syncHeaderTransparency() {
+    const scrollY = window.scrollY;
 
-    let firstScrollTriggered = false;
+    if (scrollY > 80) header.classList.remove("transparent");
+    if (scrollY <= 20) header.classList.add("transparent");
+  }
 
-    window.addEventListener("scroll", () => {
-        const scrollY = window.scrollY;
+  // Set correct state on initial load (important for anchor links / refresh).
+  header.classList.add("transparent");
+  syncHeaderTransparency();
 
-        // First scroll → remove transparency
-        if (scrollY > 80 && !firstScrollTriggered) {
-            firstScrollTriggered = true;
-            header.classList.remove("transparent");
-        }
-
-        // Scroll back to top → become transparent again
-        if (scrollY <= 20) {
-            firstScrollTriggered = false;
-            header.classList.add("transparent");
-        }
-    });
+  window.addEventListener("scroll", syncHeaderTransparency);
 });
 
 
@@ -570,4 +565,40 @@ style.textContent = `
 }
 `;
 document.head.appendChild(style);
+
+
+// Screenshots (UI video): autoplay + mute/unmute toggle
+(function initUiVideoSoundToggle() {
+  const video = document.querySelector('.ui-bg-video');
+  const toggleButton = document.querySelector('.video-sound-toggle');
+  if (!video || !toggleButton) return;
+
+  function setMuted(muted) {
+    video.muted = muted;
+    toggleButton.dataset.muted = String(muted);
+    toggleButton.setAttribute('aria-label', muted ? 'Unmute video' : 'Mute video');
+    toggleButton.setAttribute('aria-pressed', String(!muted));
+  }
+
+  // Autoplay is most reliable when muted.
+  setMuted(true);
+  video.volume = 1;
+
+  function tryPlay() {
+    const p = video.play();
+    if (p && typeof p.catch === 'function') p.catch(() => {});
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', tryPlay, { once: true });
+  } else {
+    tryPlay();
+  }
+
+  toggleButton.addEventListener('click', () => {
+    const nextMuted = !video.muted;
+    setMuted(nextMuted);
+    tryPlay();
+  });
+})();
 
