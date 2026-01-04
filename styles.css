@@ -387,7 +387,6 @@ main {
     max-width: 600px;
     height: 68px;
     border-radius: 50px;
-    flex-wrap: nowrap;
     overflow: hidden;
     background: rgba(255,255,255,0.95);
     backdrop-filter: blur(8px);
@@ -408,11 +407,9 @@ main {
 }
 
 .hero-content .input-group button svg {
-    width: 20px !important;
-    height: 20px !important;
+    width: 28px !important;
+    height: 28px !important;
     stroke: white !important;
-    display: block;
-    margin: 0;
 }
 
 
@@ -472,7 +469,7 @@ main {
 .input-group {
     margin-top:40px ;
     display: flex;
-    max-width: 600px; 
+    max-width: 400px; 
     margin-bottom: 0.5rem;
     border: 1px solid rgba(15,23,42,0.1);
     border-radius: 50px;
@@ -1604,7 +1601,9 @@ main#main .card {
   .about-hero {
     position: relative;
     overflow: visible;
+    padding: 6rem 0 4rem;
     text-align:center;
+    background: linear-gradient(180deg, rgba(107,140,255,0.06), rgba(139,227,199,0.02));
   }
 
   .hero-inner { position: relative; z-index: 5; margin: 0 auto; max-width: 960px; }
@@ -1615,8 +1614,7 @@ main#main .card {
     transform: translateY(22px);
     animation: heroFadeUp 1.2s ease-out forwards;
   }
-  .about-hero p
-  { animation-delay: .25s; }
+  .about-hero p { animation-delay: .25s; }
 
   @keyframes heroFadeUp {
     to { opacity: 1; transform: translateY(0); }
@@ -2265,40 +2263,11 @@ main#main .card {
     max-width: 34rem;
     height: auto;
     display: flex;
+    flex-direction: column;
     border-radius: 16px;
     overflow: hidden;
     backdrop-filter: none !important;
   }
-
-
-.hero-content .input-group {
-  height: 56px;                
-  border-radius: 50px;          
-}
-
-.hero-content .input-group input {
-  font-size: 0.95rem !important;
-  padding: 0 16px !important;
-  line-height: 1;
-}
-
-.hero-content .input-group button {
-  width: 56px;
-  height: 56px;
-  padding: 0 !important;
-
-  display: flex;                
-  align-items: center;
-  justify-content: center;
-}
-.hero-content .input-group button svg {
-  width: 22px !important;
-  height: 22px !important;
-  display: block;
-  margin: 0;
-}
-
-
 
   .hero-content .input-group input {
     width: 100%;
@@ -2306,37 +2275,10 @@ main#main .card {
     padding: 0.95rem 1rem !important;
   }
 
-  
-
-.hero-content .input-group {
-  flex-direction: row !important;
-  align-items: center;
-  height: 50px;                 /* same as desktop */
-  border-radius: 40px;          /* keep pill shape */
-  max-width: 320px; 
-}
-
-.hero-content .input-group input {
-  flex: 1;
-  min-width: 0;                 /* VERY IMPORTANT for mobile */
-  font-size: 0.9rem !important;
-  padding: 0 14px !important;
-  line-height: 1;
-}
-
-.hero-content .input-group button {
-  flex-shrink: 0;
-  width: 50px;                  /* arrow stays circular */
-  height: 50px;
-  padding: 0 !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-
-
+  .hero-content .input-group button {
+    width: 100%;
+    padding: 0.9rem 1rem !important;
+  }
 
   /* Generic input group: remove hard max-width on small screens */
   .input-group {
