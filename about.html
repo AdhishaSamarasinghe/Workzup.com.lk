@@ -8,107 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 
-  <style>
-    /* Match ABOUT cards to the premium FEATURE card style */
-    .about-card {
-      background: linear-gradient(180deg, #ffffff, #fbfdff);
-      border-radius: var(--radius);
-      padding: 1.6rem;
-      box-shadow: 0 6px 20px rgba(2, 6, 23, 0.06);
-      border: 1px solid rgba(15, 23, 42, 0.06);
-      transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        background 0.25s ease;
-      position: relative;
-      overflow: hidden;
-      transform-style: preserve-3d;
-    }
-
-    .about-card:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
-      background: linear-gradient(180deg, #ffffff, #eef2ff);
-    }
-
-    /* soft shine sweep like features page */
-    .about-card::after {
-      content: "";
-      position: absolute;
-      top: -120%;
-      left: -40%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        120deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.45) 50%,
-        transparent 100%
-      );
-      opacity: 0;
-      transform: rotate(25deg);
-      transition: opacity 0.3s;
-      pointer-events: none;
-    }
-
-    .about-card:hover::after {
-      opacity: 1;
-      animation: shineMove 0.9s forwards;
-    }
-
-    /* subtle float loop (same feel as feature cards) */
-    .about-card {
-      animation: floatCard 7s ease-in-out infinite;
-    }
-
-    .about-card h3 {
-      margin: 0 0 0.6rem;
-      font-size: 20px;
-      font-weight: 700;
-      color: #0f172a;
-    }
-    .about-card p {
-      font-size: 15px;
-      line-height: 1.6;
-      color: #475569;
-    }
-
-    /* Center ABOUT grids: 3 on first row, 1 centered on second row (like Features page) */
-    .about-grid {
-      margin-top: 2.2rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.6rem;
-      justify-content: center;
-    }
-
-    .about-grid .about-card {
-      flex: 0 1 260px;
-      max-width: 320px;
-    }
-
-    /* Center the stats cards nicely */
-    .why-grid {
-      margin-top:1.8rem;
-      display:flex;
-      flex-wrap:wrap;
-      gap:1.2rem;
-      justify-content:center;
-    }
-    .why-card {
-      padding:1.5rem;
-      border-radius:12px;
-      background: linear-gradient(180deg, rgba(107,140,255,0.06), rgba(139,227,199,0.03));
-      border:1px solid rgba(107,140,255,0.06);
-      min-width: 220px;
-    }
-    .counter { font-weight:700; font-size:1.6rem; color: var(--accent-1); }
-
-    /* Slightly tighter, centered content for About page */
-    main.container {
-      max-width: 980px;
-    }
-  </style>
 </head>
 
 <body>
@@ -150,48 +49,48 @@
   </section>
 
 
-  <main class="container">
+  <main>
 
     <section class="about-hero">
-      <h2 class="section-title reveal">Our Story</h2>
-      <p>WorkzUp was created on the basis of the need to build a value chain of a credible digital platform that is able to match job seekers with employers.
-         Having identified the difficulties of accessing an actual job by persons and finding a skilled and capable employee by organizations, WorkzUp was planned to simplify the process of recruitment. 
-         The platform is aimed to give a high level of order, security, and ease of use that helps in discovering the job, posting jobs, and managing applications. 
-         We are trying to offer our contribution to a more effective and accessible job market through WorkzUp.
-
-      </p>
+      <div class="container">
+        <h2 class="section-title reveal">Our Story</h2>
+        <p>WorkzUp was created on the basis of the need to build a value chain of a credible digital platform that is able to match job seekers with employers.
+          Having identified the difficulties of accessing an actual job by persons and finding a skilled and capable employee by organizations, WorkzUp was planned to simplify the process of recruitment.
+          The platform is aimed to give a high level of order, security, and ease of use that helps in discovering the job, posting jobs, and managing applications.
+          We are trying to offer our contribution to a more effective and accessible job market through WorkzUp.
+        </p>
+      </div>
     </section>
-
-    <!-- ★★★ ABOUT US PHOTO COLLAGE ★★★
-         Replace the image sources below with your actual About page photos.
-         Tip: mix team, workspace and product photos to create a real collage.
-         Just change ONLY the value inside src="...".
-    -->
-    <section class="about-section" style="--delay:0.1s;">
-      <div class="photo-collage">
-        <!-- Replace with your first About image (tall portrait) -->
-        <div class="photo-box"><img src="group photos/about 1.jpg" alt="About us image 1"></div>
-        <!-- Replace with your second About image (wide group) -->
-        <div class="photo-box"><img src="group photos/about 3.jpg" alt="About us image 2"></div>
-        <!-- Replace with your third About image (main center focus) -->
-        <div class="photo-box"><img src="group photos/about 2.png" alt="About us image 3"></div>
-        <!-- Replace with your fourth About image -->
-        <div class="photo-box"><img src="group photos/about 4.jpg" alt="About us image 4"></div>
-        <!-- Replace with your fifth About image -->
-        <div class="photo-box"><img src="group photos/About 5.jpg" alt="About us image 5"></div>
-        <!-- Optional: replace with your sixth About image -->
-        <div class="photo-box"><img src="group photos/about 6.png" alt="About us image 6"></div>
-        <!-- Optional: replace with your seventh About image -->
-        <div class="photo-box"><img src="group photos/About 7.jpg" alt="About us image 7"></div>
+  
+    <section class="about-section">
+      <div class="container">
+        <div class="photo-collage">
+          <div class="photo-box"><img src="group photos/about 1.jpg" alt=""></div>
+          <div class="photo-box"><img src="group photos/about 3.jpg" alt=""></div>
+          <div class="photo-box"><img src="group photos/about 2.png" alt=""></div>
+          <div class="photo-box"><img src="group photos/about 4.jpg" alt=""></div>
+          <div class="photo-box"><img src="group photos/About 5.jpg" alt=""></div>
+          <div class="photo-box"><img src="group photos/about 6.png" alt=""></div>
+          <div class="photo-box"><img src="group photos/About 7.jpg" alt=""></div>
+        </div>
       </div>
     </section>
 
-    <section class="about-hero" style="--delay:0.12s;">
+  
+  <!-- Mission & Vision -->
+  <section class="about-hero">
+    <div class="container">
       <h2 class="section-title">Mission & Vision</h2>
-      <p><strong>Mission:</strong> Empower individuals through fair, fast and secure access to short-term job opportunities.<br><strong>Vision:</strong> Become Sri Lanka’s most trusted short-term job platform - improving livelihoods and helping businesses scale.</p>
-    </section>
+      <p>
+        <strong>Mission:</strong> Empower individuals through fair, fast and secure access to short-term job opportunities.<br>
+        <strong>Vision:</strong> Become Sri Lanka’s most trusted short-term job platform.
+      </p>
+    </div>
+  </section>
 
-    <section class="about-hero" style="--delay:0.18s;">
+  <!-- Core Values -->
+  <section class="about-hero">
+    <div class="container">
       <h2 class="section-title">Core Values</h2>
       <div class="about-grid">
         <div class="about-card"><h3>Transparency</h3><p>Clear, honest communication among all users.</p></div>
@@ -199,9 +98,12 @@
         <div class="about-card"><h3>Equal Opportunity</h3><p>Fair access regardless of background.</p></div>
         <div class="about-card"><h3>Innovation</h3><p>Applying AI responsibly to make hiring better.</p></div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="about-hero" style="--delay:0.24s;">
+  <!-- What We Offer -->
+  <section class="about-hero">
+    <div class="container">
       <h2 class="section-title">What We Offer</h2>
       <div class="about-grid">
         <div class="about-card"><h3>AI Job Matching</h3><p>Smart matches based on skills and availability.</p></div>
@@ -209,30 +111,31 @@
         <div class="about-card"><h3>Secure Messaging</h3><p>Keep conversations safe and private.</p></div>
         <div class="about-card"><h3>Job Tracking</h3><p>Stay updated throughout the workflow.</p></div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="about-hero" style="--delay:0.30s;">
+  <!-- Why Choose WorkzUp -->
+  <section class="about-hero">
+    <div class="container">
       <h2 class="section-title">Why Choose WorkzUp?</h2>
-
       <div class="why-grid">
         <div class="why-card">
           <div class="counter" data-target="1200">0</div>
-          <div class="mb-1">Jobs Posted</div>
+          <div>Jobs Posted</div>
         </div>
-
         <div class="why-card">
           <div class="counter" data-target="850">0</div>
-          <div class="mb-1">Active Users</div>
+          <div>Active Users</div>
         </div>
-
         <div class="why-card">
           <div class="counter" data-target="98">0</div>
-          <div class="mb-1">Avg. Match Accuracy (%)</div>
+          <div>Avg. Match Accuracy (%)</div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
+</main>
 
 
   <footer class="site-footer" style="padding:2.4rem 0;">

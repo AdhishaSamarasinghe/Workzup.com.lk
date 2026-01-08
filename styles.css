@@ -1597,7 +1597,14 @@ main#main .card {
    ABOUT PAGE
 */
   /* --- HERO SECTION --- */
-    
+   
+  /* About page main wrapper */
+.about-main {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
   .about-hero {
     position: relative;
     overflow: visible;
@@ -1665,70 +1672,118 @@ main#main .card {
     }
 
 
-    /* ————————————————
-       PREMIUM PHOTO COLLAGE (ABOUT PAGE)
-       5–7 image mosaic like photography sites
-       ———————————————— */
-    .photo-collage {
-      margin-top: 3rem;
-      display: grid;
-      gap: 1.2rem;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      grid-auto-rows: 120px;
-    }
+/* ————————————————
+   GALLERY PHOTO COLLAGE (ABOUT PAGE)
+   Animated modern gallery view
+   ———————————————— */
+   .photo-collage {
+    margin-top: 3rem;
+    display: grid;
+    gap: 1.4rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: 140px;
+  }
+  
+  /* Gallery card */
+  .photo-box {
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    background: #fff;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    cursor: pointer;
+  
+    /* entrance animation */
+    transform: translateY(30px) scale(0.95);
+    opacity: 0;
+    transition: 
+      opacity 0.8s ease,
+      transform 0.8s ease,
+      box-shadow 0.4s ease;
+  }
+  
+  /* When visible (scroll animation) */
+  .photo-box.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  
+  /* Image */
+  .photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  
+  /* Hover zoom */
+  .photo-box:hover img {
+    transform: scale(1.1);
+  }
+  
+  /* Hover lift effect */
+  .photo-box:hover {
+    box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+    transform: translateY(-6px) scale(1.02);
+  }
+  
+  /* Soft dark overlay on hover */
+  .photo-box::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.35),
+      rgba(0,0,0,0.05)
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .photo-box:hover::after {
+    opacity: 1;
+  }
+  
 
-    .photo-box {
-      border-radius: 18px;
-      overflow: hidden;
-      position: relative;
-      background: #fff;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
-      transform: translateY(20px);
-      opacity: 0;
-      transition: 0.9s ease;
-    }
+/* Desktop gallery-style mosaic (balanced & clean) */
 
-    .photo-box.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+.photo-box:nth-child(1) {
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;   /* featured image */
+}
 
-    .photo-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+.photo-box:nth-child(2) {
+  grid-column: 3 / 5;
+  grid-row: 1 / 2;
+}
 
-    /* Desktop mosaic layout (mirrors inspiration collage) */
-    .photo-box:nth-child(1) {
-      grid-column: 1 / 2;
-      grid-row: 1 / 3;       /* tall portrait */
-    }
-    .photo-box:nth-child(2) {
-      grid-column: 2 / 5;
-      grid-row: 1 / 2;       /* wide group on top */
-    }
-    .photo-box:nth-child(3) {
-      grid-column: 2 / 4;
-      grid-row: 2 / 4;       /* main center focus */
-    }
-    .photo-box:nth-child(4) {
-      grid-column: 4 / 5;
-      grid-row: 2 / 4;       /* tall couple on right */
-    }
-    .photo-box:nth-child(5) {
-      grid-column: 1 / 2;
-      grid-row: 3 / 4;
-    }
-    .photo-box:nth-child(6) {
-      grid-column: 1 / 3;
-      grid-row: 4 / 5;
-    }
-    .photo-box:nth-child(7) {
-      grid-column: 3 / 5;
-      grid-row: 4 / 5;
-    }
+.photo-box:nth-child(3) {
+  grid-column: 3 / 5;
+  grid-row: 2 / 3;
+}
+
+.photo-box:nth-child(4) {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+}
+
+.photo-box:nth-child(5) {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+}
+
+.photo-box:nth-child(6) {
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+}
+
+.photo-box:nth-child(7) {
+  grid-column: 4 / 5;
+  grid-row: 3 / 4;
+}
+
 
     /* Responsive: stack into simple grid on small screens */
     @media (max-width: 800px) {
@@ -1741,6 +1796,109 @@ main#main .card {
         grid-row: auto !important;
       }
     }
+
+  
+    
+    /* Match ABOUT cards to the premium FEATURE card style */
+    .about-card {
+      background: linear-gradient(180deg, #ffffff, #fbfdff);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      box-shadow: 0 6px 20px rgba(2, 6, 23, 0.06);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+
+    .about-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
+      background: linear-gradient(180deg, #ffffff, #eef2ff);
+    }
+
+    /* soft shine sweep like features page */
+    .about-card::after {
+      content: "";
+      position: absolute;
+      top: -120%;
+      left: -40%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.45) 50%,
+        transparent 100%
+      );
+      opacity: 0;
+      transform: rotate(25deg);
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .about-card:hover::after {
+      opacity: 1;
+      animation: shineMove 0.9s forwards;
+    }
+
+    /* subtle float loop (same feel as feature cards) */
+    .about-card {
+      animation: floatCard 7s ease-in-out infinite;
+    }
+
+    .about-card h3 {
+      margin: 0 0 0.6rem;
+      font-size: 20px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .about-card p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #475569;
+    }
+
+    /* Center ABOUT grids: 3 on first row, 1 centered on second row (like Features page) */
+    .about-grid {
+      margin-top: 2.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.6rem;
+      justify-content: center;
+    }
+
+    .about-grid .about-card {
+      flex: 0 1 260px;
+      max-width: 320px;
+    }
+
+    /* Center the stats cards nicely */
+    .why-grid {
+      margin-top:1.8rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:1.2rem;
+      justify-content:center;
+    }
+    .why-card {
+      padding:1.5rem;
+      border-radius:12px;
+      background: linear-gradient(180deg, rgba(107,140,255,0.06), rgba(139,227,199,0.03));
+      border:1px solid rgba(107,140,255,0.06);
+      min-width: 220px;
+    }
+    .counter { font-weight:700; font-size:1.6rem; color: var(--accent-1); }
+
+    /* Slightly tighter, centered content for About page */
+    main.container {
+      max-width: 980px;
+    }
+  
 /* ------------------------------------------------------------
    FEATURE PAGE — UPGRADED PROFESSIONAL UI
 ------------------------------------------------------------ */
