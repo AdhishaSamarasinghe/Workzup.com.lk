@@ -466,6 +466,11 @@ main {
     50% { border-color: #007bff; }
 }
 
+#how {
+  scroll-margin-top: 110px;
+}
+
+
 .input-group {
     margin-top:40px ;
     display: flex;
